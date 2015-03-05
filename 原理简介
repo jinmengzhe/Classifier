@@ -1,0 +1,50 @@
+
+	* 互信息基本概念
+	* 
+		* P(xy) = P(x) * P(y|x)  = P(y) * P(x|y)  这是贝叶斯公式
+		* 互信息定义为 I(x, y) = log{ P(x|y) / log(P(x)) } = log{ P(y|x) / log(P(y)) } = log{ P(y|x) } - log{ P(x) } = log{ P(x|y) } - log{ P(y) } = log{ P(xy) / (P(x) * P(y)) }
+		* 性质：对称性、参见上一条公式
+		* 理解：1、其实就是将贝叶斯公式做了一点变换 2、变换后加上了log
+
+	* 对于我们分类系统中的理解
+	* 
+		* x就是我们的分类id--label
+		* y就是我们从标题里取出的特征词--feature
+		* 在此基础上我们构建了如下的原始训练集：
+		* 
+			* X1      Y1  Y2  Y3
+			* X1      Y1  Y2  Y3  Y4
+			* ....
+			* Xm     Y1  Y2  Y3  .......Yn
+
+		* 对此训练集的基本信息进行描述：
+		* 
+			* 分类id(即label) 有m个：     X1--Xm
+			* 特征词(即feature) 有n个：  Y1--Yn
+			* 数据集有TOTAL行---这个也很重要、用于计算概率啊
+
+		* 基于以上描述、如下计算Xi和Yj之间的互信息：
+		* 
+			* I(Xi, Yj) = log{ P(Xi Yj) / (P(Xi) * P(Yj)) }---或以上对等公式中的其他形式、是一样的
+			* 问题转化为：求P(Xi Yj)、P(Xi) 、P(Yj)这三个变量
+			* 形象的描述、即：求XiYj同时出现的概率、求Xi出现的概率、求Yj出现的概率
+			* P(Xi Yj) = 上述文件中同时出现Xi和Yj的行数  /  总行数(TOTAL)
+			* P(Xi) = 上述文件中出现Xi的行数  /  总行数(TOTAL)
+			* P(Yj) = 上述文件中出现Yj的行数 /  总行数(TOTAL)
+			* 由此I(Xi, Yj) ={ LINE(Xi, Yj) / TOTAL }  / { LINE(Xi) * LINE(Yj)  / TOTAL * TOTAL} = { TOTAL * LINE(Xi, Yj) } / { LINE(Xi) * LINE(Yj) }
+			* 理解上式的含义：
+			* 
+				*  { TOTAL * LINE(Xi, Yj) } / { LINE(Xi) * LINE(Yj) }的取值范围：[0, TOTAL]  ----当LINE(Xi, Yj)=0时取最小值、当LINE(Xi, Yj)=LINE(Xi)=LINE(Yj)=1时取最大值。 
+				* 那么I(Xi, Yj)的取值范围就是：(-∞, log{TOTAL })
+				* 继续深入理解下：当{ TOTAL * LINE(Xi, Yj) } / { LINE(Xi) * LINE(Yj) } == 1时、是互信息的正负分界点。即LINE(Xi) * LINE(Yj)  / LINE(Xi, Yj) = TOTAL 
+				* 当LINE(Xi) * LINE(Yj)  / LINE(Xi, Yj) > TOTAL ,互信息为负数，越大负的越多。当LINE(Xi) * LINE(Yj)  / LINE(Xi, Yj) < TOTAL、互信息为正数，越小正的越多。
+
+
+
+	* 现在可以理解我们的分类系统如何工作了--对照代码：
+	* 
+		* 统计label_count----------------------------由此可以得到上面分析的每个Xi的LINE(Xi)
+		* 统计feature_count-------------------------由此可以得到上面分析的每个Yj的 LINE(Yj)
+		* 统计label_feature_count------------------由此可以得到上面分析的每个XiYj共现的LINE(Xi, Yj)
+
+
