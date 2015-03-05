@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/dianshang_java/!svn/ver/4028/B2cClassify/training
+END
+generate_fs.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/dianshang_java/!svn/ver/3919/B2cClassify/training/generate_fs.py
+END
+compositive_classifier.py
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/dianshang_java/!svn/ver/4028/B2cClassify/training/compositive_classifier.py
+END
+classifier.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/dianshang_java/!svn/ver/3907/B2cClassify/training/classifier.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/dianshang_java/!svn/ver/3831/B2cClassify/training/__init__.py
+END
+feature_util.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/dianshang_java/!svn/ver/3904/B2cClassify/training/feature_util.py
+END
+classify_by_title.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/dianshang_java/!svn/ver/3938/B2cClassify/training/classify_by_title.py
+END
+generate_ts.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/dianshang_java/!svn/ver/3898/B2cClassify/training/generate_ts.py
+END
+mutual_info.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/dianshang_java/!svn/ver/3899/B2cClassify/training/mutual_info.py
+END
